@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/underlinebox">
+        <TextView
+            android:id="@+id/tv_cp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/myMuk"
+            android:fontFamily="@font/scdream3"
+            android:gravity="center"
+            android:text="쿠폰이름"/>
+        <TextView
+            android:id="@+id/tv_cp_date"
+            android:layout_width="150dp"
+            android:fontFamily="@font/scdream3"
+            android:textColor="@color/myMuk"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="만료기간"/>
+        <TextView
+            android:id="@+id/tv_cp_Dday"
+            android:layout_width="70dp"
+            android:fontFamily="@font/scdream5"
+            android:textColor="@color/myYellow"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="D-00"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/drawer_info"
+        android:title="내 정보" />
+    <item
+        android:id="@+id/drawer_setting"
+        android:title="설정"/>
+    <item
+        android:id="@+id/drawer_login"
+        android:title="로그인/로그아웃"/>
+
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/scdream1"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/scdream3"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/scdream5"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/scdream7"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/scdream9"/>
+<!--    fontstyle: narmal, bold 등 / fontWeight 양수값, 100배수, 기본값 400 굵은체 보통 700-->
+</font-family>

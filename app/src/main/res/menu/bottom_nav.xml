@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragment_1"
+        android:enabled="true"
+        android:icon="@drawable/selector_menu_money_icon"
+        android:title="가계부"/>
+
+    <item
+        android:id="@+id/fragment_2"
+        android:enabled="true"
+        android:icon="@drawable/selector_menu_barcord_icon"
+        android:title="쿠폰관리"/>
+
+    <item
+        android:id="@+id/fragment_3"
+        android:enabled="true"
+        android:icon="@drawable/selector_menu_card_icon"
+        android:title="멤버십" />
+
+</menu>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar_sub1"
+        android:id="@+id/toolbar_ab_add"
+        android:layout_height="60dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/scdream5"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="구분"/>
+
+            <RadioGroup
+                android:id="@+id/ab_add_radio"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:checkedButton="@id/ab_add_radio_expense"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/ab_add_radio_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="수입"/>
+                <RadioButton
+                    android:id="@+id/ab_add_radio_expense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="지출"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="날짜"/>
+
+            <EditText
+                android:id="@+id/ab_add_date"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="자산"/>
+            <Spinner
+                android:id="@+id/ab_add_account"
+                android:layout_width="200dp"
+                android:layout_height="40dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="분류"/>
+            <Spinner
+                android:id="@+id/ab_add_category"
+                android:layout_width="200dp"
+                android:layout_height="40dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="금액"/>
+
+            <EditText
+                android:id="@+id/ab_add_amount"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="내용"/>
+            <EditText
+                android:id="@+id/ab_add_note"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="메모"/>
+            <EditText
+                android:id="@+id/ab_add_memo"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ab_add_save"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:text="저장하기" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/myYellow"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+</LinearLayout>
