@@ -1,24 +1,32 @@
 package com.capstone.itshere.coupon;
 
 public class CouponItem {
-    private String name;
+    private String idNum;
+    private String contents;
     private String date;
     private String dday;
-    private String idNum;
 
-    public CouponItem(String name, String date, String dday, String idNum) {
-        this.name = name;
+    public CouponItem(String idNum, String contents, String date, String dday) {
+        this.idNum = idNum;
+        this.contents = contents;
         this.date = date;
         this.dday = dday;
+    }
+
+    public String getIdNum() {
+        return idNum;
+    }
+
+    public void setIdNum(String idNum) {
         this.idNum = idNum;
     }
 
-    public String getName() {
-        return name;
+    public String getContents() {
+        return contents;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     public String getDate() {
@@ -35,13 +43,5 @@ public class CouponItem {
 
     public void setDday(String dday) {
         this.dday = dday;
-    }
-
-    public String getIdNum() {
-        return idNum;
-    }
-
-    public void setIdNum(String idNum) {
-        this.idNum = idNum;
     }
 }

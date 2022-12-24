@@ -1,5 +1,7 @@
 package com.capstone.itshere;
 
+import static com.capstone.itshere.StringAndFunction.timestampToString;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -175,20 +177,6 @@ public class Fragment1 extends Fragment {
             ly_total.setVisibility(View.GONE);
             tv_hint2.setVisibility(View.GONE);// 가계부작성하세요 레이아웃 안보이게
         }
-    }
-
-    public static String timestampToString(String stamp){
-        stamp = stamp.replace("Timestamp(seconds=", "").replace(" nanoseconds=", "").replace(")", "");
-        String[] array = stamp.split(",");
-        String ds = array[0];
-        Log.i(TAG, "타임스탬프 변환실행"+ds);
-        long timestamp = Long.parseLong(ds);
-        Date date = new java.util.Date(timestamp*1000L);
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
-        String formattedDate = sdf.format(date);
-        Log.i(TAG, "타임스탬프 변환실행"+formattedDate);
-        return formattedDate;
     }
 
     public static String getYearMonth(){

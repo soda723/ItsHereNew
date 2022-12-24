@@ -1,5 +1,7 @@
 package com.capstone.itshere.accountBook;
 
+import static com.capstone.itshere.StringAndFunction.timestampToString;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -97,7 +99,7 @@ public class StatsDetailyActivity extends AppCompatActivity {
                                     String category = String.valueOf(shot.get(FirebaseID.category));
                                     String bigcate = String.valueOf(shot.get(FirebaseID.bigcate));
                                     if (category.equals(categoryname) && bigcate.equals("지출")){ //해당카테고리(ex식비) 이고 지출인 데이터만 처리
-                                        String date = Fragment1.timestampToString(String.valueOf(shot.get(FirebaseID.notedate)));
+                                        String date = timestampToString(String.valueOf(shot.get(FirebaseID.notedate)));
                                         String note = String.valueOf(shot.get(FirebaseID.note));
                                         int amount = Integer.parseInt(String.valueOf(shot.get(FirebaseID.amount)));
                                         String docId = String.valueOf(shot.get(FirebaseID.documentId));

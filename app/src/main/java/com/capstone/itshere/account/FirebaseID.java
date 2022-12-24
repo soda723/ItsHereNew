@@ -7,11 +7,12 @@ public class FirebaseID {
     public static String membershipboard = "membershipboard";
     public static String couponboard = "couponboard";
 
-//    public static String documentId = "documentId";
+    //for login
     public static String email = "email";
     public static String password = "password";
     public static String nickname = "nickname";
 
+    //for accountbook
     public static String documentId = "documentId";
     public static String bigcate="bigcate";
     public static String notedate = "notedate";
@@ -21,7 +22,11 @@ public class FirebaseID {
     public static String note = "note";
     public static String memo = "memo";
 
+    //for couponboard
+    public static String contents = "contents";
+    public static String alarm = "alarm";
 
-    public static String reply_contents = "reply_contents";
-    public static String message = "message";
+
+    public static String imageurl = "imageurl";
+    public static String conn ="conn";
 }

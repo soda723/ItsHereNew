@@ -1,5 +1,7 @@
 package com.capstone.itshere.accountBook;
 
+import static com.capstone.itshere.StringAndFunction.timestampToString;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -172,17 +174,5 @@ public class DailyDetailActivity extends AppCompatActivity {
 
 
     }//--OnStart--**
-
-    private String timestampToString(String stamp){
-        stamp = stamp.replace("Timestamp(seconds=", "").replace(" nanoseconds=", "").replace(")", "");
-        String[] array = stamp.split(",");
-        String ds = array[0];
-        long timestamp = Long.parseLong(ds);
-        Date date = new java.util.Date(timestamp*1000L);
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
-        String formattedDate = sdf.format(date);
-        return formattedDate;
-    }
 
 }

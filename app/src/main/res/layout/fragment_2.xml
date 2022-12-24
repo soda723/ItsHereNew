@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center"
@@ -28,75 +36,145 @@
             />
     </LinearLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-            <LinearLayout
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:text=" 카페 "
-                    android:textSize="17dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:padding="3dp"
-                    android:layout_marginRight="3dp"
-                    android:fontFamily="@font/scdream5"
-                    android:textColor="@color/white"
-                    android:background="@drawable/layout_roundsqaure_yellow"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:padding="3dp"
-                    android:text="베이커리/빵"
-                    android:textSize="17dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginRight="3dp"
-                    android:fontFamily="@font/scdream5"
-                    android:textColor="@color/white"
-                    android:background="@drawable/layout_roundsqaure_yellow"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:padding="3dp"
-                    android:text="버거/치킨/피자"
-                    android:textSize="17dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginRight="3dp"
-                    android:fontFamily="@font/scdream5"
-                    android:textColor="@color/white"
-                    android:background="@drawable/layout_roundsqaure_yellow"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:padding="3dp"
-                    android:text="아이스크림/도넛"
-                    android:textSize="17dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginRight="3dp"
-                    android:fontFamily="@font/scdream5"
-                    android:textColor="@color/white"
-                    android:background="@drawable/layout_roundsqaure_yellow"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:padding="3dp"
-                    android:text="상품권/마트"
-                    android:textSize="17dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginRight="3dp"
-                    android:fontFamily="@font/scdream5"
-                    android:textColor="@color/white"
-                    android:background="@drawable/layout_roundsqaure_yellow"/>
-            </LinearLayout>
-        </HorizontalScrollView>
+                android:layout_height="35dp"
+                android:text=" 카페 "
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="베이커리/빵"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="버거/치킨/피자"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="아이스크림/도넛"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="상품권/마트"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="외식"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="생활편의/기타"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="3dp"
+                android:text="영화/테마파크/전시"
+                android:textSize="17dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:background="@drawable/layout_roundsqaure_yellow"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/fr2_tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="로그인 하세요!" />
+    <TextView
+        android:id="@+id/fr2_tv_hint2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="쿠폰을 보관해보세요!" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fr2_recyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fr2_fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/myYellow"
+        android:src="@drawable/ic_add_white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

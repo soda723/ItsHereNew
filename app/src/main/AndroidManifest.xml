@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItsHere">
         <activity
+            android:name=".coupon.CouponDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".coupon.cp_add_Activity"
+            android:exported="false" />
+        <activity
             android:name=".accountBook.StatsDetailyActivity"
             android:exported="false" />
         <activity

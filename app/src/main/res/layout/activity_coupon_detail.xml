@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".coupon.CouponDetailActivity">
+
+    <include
+        layout="@layout/toolbar_sub2"
+        android:id="@+id/toolbar_ab_add"
+        android:layout_height="60dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/scdream5"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cp_detail_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_height="200dp"
+            tools:background="@color/myGray"/>
+        <TextView
+            android:id="@+id/cp_detail_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/scdream7"
+            tools:text="스타벅스 아메리카노 tall"/>
+        <TextView
+            android:id="@+id/cp_detail_date"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/scdream7"
+            tools:text="~ 2023.02.11."/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_alarm_yellow"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/cp_detail_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                tools:text="3일전 알림"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cp_detail_btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/layout_roundsquare_gray"
+        android:text="삭제"
+        android:textSize="20dp"
+        android:fontFamily="@font/scdream5"
+        android:textColor="@color/white"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

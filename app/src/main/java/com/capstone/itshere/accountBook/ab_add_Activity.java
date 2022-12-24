@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.capstone.itshere.Fragment1;
 import com.capstone.itshere.R;
+import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -164,7 +165,7 @@ public class ab_add_Activity extends AppCompatActivity {
                     }catch(NullPointerException e){
                         data.put(FirebaseID.bigcate, "지출"); // 수입/지출항목을 지정하지 않으면 기본값 지출로 설정
                     }
-                    data.put(FirebaseID.notedate, StringToTimeStamp(ab_add_date.getText().toString()));
+                    data.put(FirebaseID.notedate, StringAndFunction.StringToTimeStamp(ab_add_date.getText().toString()));
                     data.put(FirebaseID.account, spinner_account.getSelectedItem().toString());
                     data.put(FirebaseID.category, spinner_category.getSelectedItem().toString());
                     data.put(FirebaseID.amount, Integer.parseInt(String.valueOf(ab_add_amount.getText())));
@@ -190,15 +191,10 @@ public class ab_add_Activity extends AppCompatActivity {
     }
 
     private void updateLabel(){
-        String myFormat = "yyyy-MM-dd";
+        String myFormat = StringAndFunction.dateformat;
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         ab_add_date.setText(sdf.format(myCalendar.getTime()));
-
     }
     
-    public static Timestamp StringToTimeStamp(String datestring){
-        String newdate = datestring + " 00:00:00";
-        Timestamp timestamp = Timestamp.valueOf(newdate);
-        return timestamp;
-    }
+
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -11,14 +12,14 @@
         android:gravity="center"
         android:background="@drawable/underlinebox">
         <TextView
-            android:id="@+id/tv_cp_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_cp_contents"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/myMuk"
             android:fontFamily="@font/scdream3"
             android:gravity="center"
-            android:text="쿠폰이름"/>
+            tools:text="스타벅스 아메리카노 tall"/>
         <TextView
             android:id="@+id/tv_cp_date"
             android:layout_width="150dp"
@@ -26,15 +27,15 @@
             android:textColor="@color/myMuk"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="만료기간"/>
+            tools:text="~ 2023.02.11."/>
         <TextView
-            android:id="@+id/tv_cp_Dday"
+            android:id="@+id/tv_cp_dday"
             android:layout_width="70dp"
             android:fontFamily="@font/scdream5"
             android:textColor="@color/myYellow"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="D-00"/>
+            tools:text="D-14"/>
     </LinearLayout>
 
 </LinearLayout>
