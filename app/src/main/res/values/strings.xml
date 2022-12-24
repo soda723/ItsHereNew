@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">"It's Here"</string>
+    <string name="app_name">It\'s Here[N]</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="submit">등록하기</string>

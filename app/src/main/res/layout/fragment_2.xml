@@ -3,60 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="쿠폰 이미지 업로드"
         android:gravity="center"
-        android:background="@color/white"
-        android:textColor="@color/myYellow"
-        android:fontFamily="@font/scdream7"
-        android:textSize="20dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/scdream5"
+            android:text="시간순   "/>
+        <EditText
+            android:layout_width="100dp"
+            android:layout_weight="1"
+            android:layout_height="40dp" />
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_search_muk"
+            />
+    </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myYellow"
-        android:onClick="clickLoad"
-        android:text="쿠폰 이미지 추가"
-        android:textAllCaps="false" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text=" 카페 "
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:layout_marginRight="3dp"
+                    android:fontFamily="@font/scdream5"
+                    android:textColor="@color/white"
+                    android:background="@drawable/layout_roundsqaure_yellow"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:padding="3dp"
+                    android:text="베이커리/빵"
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:fontFamily="@font/scdream5"
+                    android:textColor="@color/white"
+                    android:background="@drawable/layout_roundsqaure_yellow"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:padding="3dp"
+                    android:text="버거/치킨/피자"
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:fontFamily="@font/scdream5"
+                    android:textColor="@color/white"
+                    android:background="@drawable/layout_roundsqaure_yellow"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:padding="3dp"
+                    android:text="아이스크림/도넛"
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:fontFamily="@font/scdream5"
+                    android:textColor="@color/white"
+                    android:background="@drawable/layout_roundsqaure_yellow"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:padding="3dp"
+                    android:text="상품권/마트"
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:fontFamily="@font/scdream5"
+                    android:textColor="@color/white"
+                    android:background="@drawable/layout_roundsqaure_yellow"/>
+            </LinearLayout>
+        </HorizontalScrollView>
 
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="match_parent"
-        android:layout_height="311dp"
-        android:layout_weight="1" />
-    <!--    android:layout_weight="1" 나머지 부분 다 먹는다. -->
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myYellow"
-
-        android:onClick="clickUpload"
-        android:text="스타벅스(2022-00-00), D-00"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myYellow"
-
-        android:onClick="clickUpload"
-        android:text=" 신세계백화점(2023-00-00),  D-00"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myYellow"
-
-        android:onClick="clickUpload"
-        android:text="기타(2023-00-00),  D-00"
-        android:textAllCaps="false" />
 </LinearLayout>
