@@ -33,6 +33,7 @@ import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
 import com.capstone.itshere.accountBook.ab_add_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,9 +56,9 @@ public class cp_add_Activity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
-    private final StorageReference reference = FirebaseStorage.getInstance().getReference();
-    private String email;
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    private final StorageReference storageRef = storage.getReference();
+    private String email, cpNoteId;
     private Uri imageUrl;
     private ImageModel imageModel;
     private String modelID;
@@ -68,7 +69,7 @@ public class cp_add_Activity extends AppCompatActivity {
     private ImageView addimage;
     EditText cp_add_contents, cp_add_date;
     Spinner alarm_spinner;
-    private Button btn_save,btn_load_image;
+    private Button btn_save;
 
     private Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -96,6 +97,7 @@ public class cp_add_Activity extends AppCompatActivity {
                             if (task.getResult() != null) {
                                 email = (String) task.getResult().getData()
                                         .get(FirebaseID.email);
+                                cpNoteId = db.collection(FirebaseID.documentId).document().getId();
                                 Log.e("입력", email + " ");
                             }
                         }
@@ -177,25 +179,26 @@ public class cp_add_Activity extends AppCompatActivity {
     private void saveCouponData() {
         if(mAuth.getCurrentUser() != null){
             if(imageUrl != null){
-                try{
+                //try{
                     //이미지업로드
                     uploadTofirebase(imageUrl);
                     //나머지 데이터입력
-                    String cpNoteId = db.collection(FirebaseID.documentId).document().getId();
+                    //String cpNoteId = db.collection(FirebaseID.documentId).document().getId();
                     Map<String,Object> data = new HashMap<>();
                     data.put(FirebaseID.documentId, cpNoteId);
                     data.put(FirebaseID.contents, cp_add_contents.getText().toString());
                     data.put(FirebaseID.notedate, StringAndFunction.StringToTimeStamp(cp_add_date.getText().toString()));
                     data.put(FirebaseID.alarm, alarm_spinner.getSelectedItem().toString());
-                    data.put(FirebaseID.imageurl, imageUrl.toString());
-                    Log.e("입력8", imageUrl.toString());
+                    data.put(FirebaseID.imageurl, modelID);
+                    Log.e("이미지URl : ", modelID);
+
                     db.collection(FirebaseID.couponboard).document(email)
                             .collection(FirebaseID.conn).document(cpNoteId)
                             .set(data, SetOptions.merge());
-                    Log.e("입력9", "왜");
-                } catch(Exception e){
-                    Toast.makeText(cp_add_Activity.this,"잠시후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
-                }
+                    Log.e("굿 : ", "입력완료");
+//                } catch(Exception e){
+//                    Toast.makeText(cp_add_Activity.this,"잠시후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
+//                }
                 finish();
             }else{
                 //이미지 선택하지 않음
@@ -207,40 +210,26 @@ public class cp_add_Activity extends AppCompatActivity {
         }
     }
 
-    //파이어베이스 이미지 업로드
     private void uploadTofirebase(Uri uri){
-        try {
-            StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getFileExtention(uri));
-            fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            //이미지 모델에 담기
-                            imageModel = new ImageModel(uri.toString());
+        modelID = email+cpNoteId+".jpg"; // 파일명
+        Uri file  = uri;
+        Log.d("확인유알", String.valueOf(file));
+        StorageReference riversRef = storageRef.child("coupon/" + modelID);
+        UploadTask uploadTask = riversRef.putFile(file);
 
-                            //키로 아이디 생성
-                            modelID = root.push().getKey();
-
-                            //데이터 넣기
-                            root.child(modelID).setValue(imageModel);
-                            Log.e("uploadTofirebase", modelID + " ");
-                            addimage.setImageResource(R.drawable.ic_add_image);
-                        }
-                    });
-                }
-            });
-        }catch(Exception e){
-            Log.e("uploadtofirebase", e + " ");
-        }
-    }
-
-    //파일 타입가져오기
-    private String getFileExtention(Uri uri){
-        ContentResolver cr = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cr.getType(uri));
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("노2 업로드2", "bad");
+                //Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.e("굿2 업로드2", "good");
+            }
+        });
+        addimage.setImageResource(R.drawable.ic_add_image);
     }
 
     private void updateLabel(){

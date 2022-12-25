@@ -102,7 +102,7 @@ public class Fragment2 extends Fragment {
             //
             db.collection(FirebaseID.couponboard).document(document_email)
                     .collection(FirebaseID.conn)
-                    .orderBy(FirebaseID.notedate, Query.Direction.DESCENDING)
+                    .orderBy(FirebaseID.notedate, Query.Direction.ASCENDING)
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

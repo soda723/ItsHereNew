@@ -4,7 +4,10 @@ import static com.capstone.itshere.StringAndFunction.timestampToString;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.text.AllCapsTransformationMethod;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +40,9 @@ public class CouponDetailActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private StorageReference storageRef = FirebaseStorage.getInstance().getReference();
     final FirebaseUser User = mAuth.getCurrentUser();
-    private final StorageReference reference = FirebaseStorage.getInstance().getReference();
-    private final StorageReference pathref = reference.child("Image");
-    private String document_email;
-    private Uri imageUrl;
+    private String document_email, imageurl;
 
     private ImageButton back;
     private TextView title;
@@ -49,8 +50,6 @@ public class CouponDetailActivity extends AppCompatActivity {
     private ImageView imageView;
     private Button btn_delete;
     private String idNum;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +78,14 @@ public class CouponDetailActivity extends AppCompatActivity {
         cp_detail_alarm = findViewById(R.id.cp_detail_alarm);
         btn_delete = findViewById(R.id.cp_detail_btn_delete);
 
+        //삭제버튼
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogAndDelete();
+            }
+        });
+
     }
 
     @Override
@@ -103,27 +110,85 @@ public class CouponDetailActivity extends AppCompatActivity {
                                 cp_detail_date.setText(date);
                                 cp_detail_alarm.setText(alarm + " 알림");
                                 try{
-                                    //content://media/external/images/media/1000001718
-
-                                    StorageReference mimage = pathref.child("1671899339650.jpg");
-                                    mimage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            Glide.with(getApplicationContext()).load(uri).into(imageView);
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
+                                    imageurl = "coupon/"+document_email + idNum+".jpg";
+                                    storageRef.child(imageurl).getDownloadUrl()
+                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    //성공
+                                                    Glide.with(CouponDetailActivity.this).load(uri).into(imageView);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            //실패
                                             imageView.setImageResource(R.drawable.ic_image_not_supported);
                                         }
                                     });
                                 }catch(Exception e){
-                                    Toast.makeText(getApplicationContext(), "이미지지가 정상적으로 업로드 되지 않습니다.",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CouponDetailActivity.this, "이미지 불러오기를 실패했습니다..",Toast.LENGTH_SHORT).show();
                                     imageView.setImageResource(R.drawable.ic_image_not_supported);
                                 }
 
                             }
                         }
+                    }
+                });
+    }//onStrart
+
+    private void showDialogAndDelete(){
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(CouponDetailActivity.this)
+                .setTitle("쿠폰 삭제")
+                .setMessage("쿠폰을 목록에서 삭제하시겠습니다?")
+                .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Deletecoupon();
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(CouponDetailActivity.this, "삭제 취소", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog msDig = msgBuilder.create();
+        msDig.show();
+    }
+
+    private void Deletecoupon(){
+        //쿠폰(이미지)삭제
+        StorageReference desertRef = storageRef.child(imageurl);
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //삭제 성공 > 데이터 삭제
+                DeleteCpData();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CouponDetailActivity.this, "삭제실패! 잠시후 시도해주세요", Toast.LENGTH_SHORT).show();
+                Log.w("in Deletecoupon() : ", "Error deleting document");
+            }
+        });
+    }
+
+    private void DeleteCpData(){
+        db.collection(FirebaseID.couponboard).document(document_email)
+                .collection(FirebaseID.conn).document(idNum).delete() //고유id값을 가진 데이터를 찾아서 삭제
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("CP Note delete", "DocumentSnapshot successfully deleted!");
+                        //진짜 다 삭제 > 액티비티 종료
+                        CouponDetailActivity.this.finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("in DeleteCpData()", "Error deleting document", e);
+                        Toast.makeText(CouponDetailActivity.this, "삭제실패! 잠시후 시도해주세요", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

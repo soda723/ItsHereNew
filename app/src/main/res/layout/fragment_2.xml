@@ -170,11 +170,16 @@
         android:id="@+id/fr2_fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="339dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="70dp"
         android:backgroundTint="@color/myYellow"
         android:src="@drawable/ic_add_white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
