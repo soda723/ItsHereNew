@@ -7,9 +7,15 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +34,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.capstone.itshere.AlarmRecevier;
+import com.capstone.itshere.MainActivity;
 import com.capstone.itshere.R;
 import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
@@ -46,8 +54,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -70,6 +81,11 @@ public class cp_add_Activity extends AppCompatActivity {
     EditText cp_add_contents, cp_add_date;
     Spinner alarm_spinner;
     private Button btn_save;
+
+    private AlarmManager alarmManager;
+    private GregorianCalendar gCalander;
+    private NotificationManager notificationManager;
+    NotificationCompat.Builder builder;
 
     private Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -199,6 +215,7 @@ public class cp_add_Activity extends AppCompatActivity {
 //                } catch(Exception e){
 //                    Toast.makeText(cp_add_Activity.this,"잠시후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
 //                }
+                ResisterAlarm();
                 finish();
             }else{
                 //이미지 선택하지 않음
@@ -237,6 +254,36 @@ public class cp_add_Activity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         cp_add_date.setText(sdf.format(myCalendar.getTime()));
 
+    }
+
+    private void ResisterAlarm(){
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        gCalander = new GregorianCalendar();
+        Log.v("알람등록", gCalander.getTime().toString() );
+        setContentView(R.layout.activity_main);
+        setAlarm();
+    }
+
+    private void setAlarm(){
+        //AlarmReciver에 값 전달하기
+        Intent rcivIntent = new Intent(cp_add_Activity.this, AlarmRecevier.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(cp_add_Activity.this, 0, rcivIntent, PendingIntent.FLAG_MUTABLE);
+        String from = "2022-12-25 18:20:00"; //임의 시간지정
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date datetime = null;
+        try {
+            datetime = dateFormat.parse(from);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(datetime);
+
+        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
+        Log.e("여기여기여기여기", "실행됐음!!!!");
     }
 
 }
