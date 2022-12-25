@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItsHere">
         <activity
+            android:name=".membership.MembershipAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".coupon.CouponDetailActivity"
             android:exported="false" />
         <activity
@@ -42,7 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarmRecevier"
+
+        <receiver
+            android:name=".AlarmRecevier"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

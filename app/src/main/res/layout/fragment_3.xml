@@ -1,63 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="멤버십 이미지 업로드"
-        android:gravity="center"
-        android:background="@color/white"
-        android:textColor="@color/myBlue"
-        android:fontFamily="@font/scdream7"
-        android:textSize="20dp" />
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fr3_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="550dp" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab3_add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/myBlue"
-        android:onClick="clickLoad"
-        android:text="맴버십 바코드 추가"
-        android:textAllCaps="false" />
-
-    <!--    android:layout_weight="1" 나머지 부분 다 먹는다. -->
-
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="match_parent"
-        android:layout_height="311dp"
-        android:layout_weight="1" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myBlue"
-        android:onClick="clickUpload"
-        android:text="스타벅스"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myBlue"
-        android:onClick="clickUpload"
-        android:text="신세계백화점"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/myBlue"
-        android:onClick="clickUpload"
-        android:text="기타"
-        android:textAllCaps="false" />
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/myBlue"
+        android:src="@drawable/ic_add_white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout >

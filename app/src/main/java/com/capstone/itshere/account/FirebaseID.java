@@ -4,7 +4,7 @@ public class FirebaseID {
     public static String user = "user";
     public static String noteboard = "noteboard";
     public static String noteitem = "noteitem";
-    public static String membershipboard = "membershipboard";
+    public static String MBSboard = "membershipboard";
     public static String couponboard = "couponboard";
 
     //for login
@@ -25,8 +25,10 @@ public class FirebaseID {
     //for couponboard
     public static String contents = "contents";
     public static String alarm = "alarm";
-
-
     public static String imageurl = "imageurl";
     public static String conn ="conn";
+
+    //for membership
+    public static String barcode = "barcode";
+    public static  String color = "color";
 }

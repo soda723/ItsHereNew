@@ -1,30 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="50dp"
-        android:gravity="center"
-        android:background="@drawable/underlinebox">
-        <TextView
-            android:id="@+id/tv_mb_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/myMuk"
-            android:layout_gravity="center"
-            android:fontFamily="@font/scdream3"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:text="멤버십이름"/>
-        <Button
-            android:id="@+id/btn_membership"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_keyboard_arrow_right_blue_24"/>
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        tools:background="@color/myBlue"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/mbsitem_ly_barcode"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            tools:background="@color/myGray"
+            android:orientation="vertical"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/mbsitem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/scdream5"
+                android:textSize="20dp"
+                tools:text="CJ one card"/>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/mbsitem_btn_pencil"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_pencil_white"/>
+                <ImageButton
+                    android:id="@+id/mbsitem_btn_delete"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_delete_white"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

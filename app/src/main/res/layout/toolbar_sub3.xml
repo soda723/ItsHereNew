@@ -2,10 +2,10 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar_sub1"
+    android:id="@+id/toolbar_sub3"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/myRed"
+    android:background="@color/myBlue"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     <RelativeLayout
@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/tool_sub1_back"
+            android:id="@+id/tool_sub3_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -22,7 +22,7 @@
             android:src="@drawable/ic_back_white" />
 
         <TextView
-            android:id="@+id/tool_sub1_title"
+            android:id="@+id/tool_sub3_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
