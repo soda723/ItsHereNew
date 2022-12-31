@@ -3,20 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:padding="5dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/mbsitem_ly_color"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:background="@color/myBlue"
         android:gravity="center">
         <LinearLayout
-            android:id="@+id/mbsitem_ly_barcode"
+            android:layout_marginTop="10dp"
             android:layout_width="300dp"
             android:layout_height="70dp"
-            tools:background="@color/myGray"
-            android:orientation="vertical"/>
+            tools:background="@color/white"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/barcode_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    tools:background="@color/myGray" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/barcode_text"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                tools:text="1234 5678 1234 5678"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
