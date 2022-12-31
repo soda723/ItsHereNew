@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,7 +64,24 @@ public class MembershipAddActivity extends AppCompatActivity {
         mbs_add_barcode = findViewById(R.id.mbs_add_barcode);
         mbs_add_contents = findViewById(R.id.mbs_add_contents);
         colorpicker = findViewById(R.id.mbs_colorpicker);
+        btn_save=findViewById(R.id.mbs_btn_save);
         defaultColor = ContextCompat.getColor(MembershipAddActivity.this, R.color.myBlue);
+
+        //email가져오기
+        if(mAuth.getCurrentUser() != null) {
+            db.collection(FirebaseID.user).document(mAuth.getCurrentUser().getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.getResult() != null) {
+                                email = (String) task.getResult().getData()
+                                        .get(FirebaseID.email);
+                                Log.e("입력", email + " ");
+                            }
+                        }
+                    });
+        }
 
         //colorpicker
         colorpicker.setOnClickListener(new View.OnClickListener() {
@@ -102,17 +120,7 @@ public class MembershipAddActivity extends AppCompatActivity {
     private void registerData() {
         if(mAuth.getCurrentUser() != null){
             //이메일 가져오기
-            db.collection(FirebaseID.user).document(mAuth.getCurrentUser().getUid())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if(task.getResult() != null){
-                                email = (String) task.getResult().getData()
-                                        .get(FirebaseID.email);
-                            }
-                        }
-                    });
+            Log.e("등록3email : ", email+":kk");
 
             String mbsID = db.collection(FirebaseID.documentId).document().getId();
             Map<String, Object> data = new HashMap<>();
