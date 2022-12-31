@@ -7,20 +7,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.text.AllCapsTransformationMethod;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.capstone.itshere.R;
+import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
+import com.capstone.itshere.accountBook.DailyDetailActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +41,10 @@ import com.google.firebase.storage.StorageReference;
 
 import org.checkerframework.common.value.qual.StringVal;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class CouponDetailActivity extends AppCompatActivity {
@@ -46,10 +57,22 @@ public class CouponDetailActivity extends AppCompatActivity {
 
     private ImageButton back;
     private TextView title;
-    private TextView cp_detail_contents, cp_detail_date,cp_detail_alarm;
+    private EditText cp_detail_contents, cp_detail_date;
+    private Spinner spinner;
     private ImageView imageView;
-    private Button btn_delete;
+    private Button btn_delete, btn_modify;
     private String idNum;
+
+    private Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +97,27 @@ public class CouponDetailActivity extends AppCompatActivity {
         imageView = findViewById(R.id.cp_detail_imageview);
         cp_detail_contents = findViewById(R.id.cp_detail_contents);
         cp_detail_date = findViewById(R.id.cp_detail_date);
-        cp_detail_alarm = findViewById(R.id.cp_detail_alarm);
+        spinner = findViewById(R.id.cp_detail_spinner);
         btn_delete = findViewById(R.id.cp_detail_btn_delete);
+        btn_modify = findViewById(R.id.cp_detail_btn_modify);
+
+        cp_detail_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(CouponDetailActivity.this,
+                        myDatePicker,
+                        myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)
+                ).show();
+            }
+        });
+
+        //alarm spinner
+        String[] alarm_items = { StringAndFunction.cp_alarm1, StringAndFunction.cp_alarm2, StringAndFunction.cp_alarm3};
+        ArrayAdapter<String> alarm_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, alarm_items);
+        alarm_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(alarm_adapter);
 
         //삭제버튼
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +126,50 @@ public class CouponDetailActivity extends AppCompatActivity {
                 showDialogAndDelete();
             }
         });
+
+        btn_modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogAndModify();
+            }
+        });
+
+    }
+
+    private void showDialogAndModify() {
+        AlertDialog.Builder msgBuilder2 = new AlertDialog.Builder(CouponDetailActivity.this)
+                .setTitle("쿠폰 수정")
+                .setMessage("쿠폰 정보를 수정하시겠습니다?")
+                .setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Modifycoupon();
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(CouponDetailActivity.this, "수정 취소", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog msDig = msgBuilder2.create();
+        msDig.show();
+    }
+
+    private void Modifycoupon() {
+        if(mAuth.getCurrentUser() != null){
+            Map<String, Object > data = new HashMap<>();
+
+            data.put(FirebaseID.notedate, StringAndFunction.StringToTimeStamp(cp_detail_date.getText().toString()));
+            data.put(FirebaseID.contents, cp_detail_contents.getText().toString());
+            data.put(FirebaseID.alarm, spinner.getSelectedItem().toString());
+
+            db.collection(FirebaseID.couponboard).document(document_email)
+                    .collection(FirebaseID.conn).document(idNum)
+                    .update(data);
+            finish();
+        }else{
+            Toast.makeText(CouponDetailActivity.this, "잠시후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -107,7 +193,7 @@ public class CouponDetailActivity extends AppCompatActivity {
 
                                 cp_detail_contents.setText(contents);
                                 cp_detail_date.setText(date);
-                                cp_detail_alarm.setText(alarm + " 알림");
+                                spinner.setSelection(findAlarmIndex(alarm));
                                 try{
                                     imageurl = "coupon/"+document_email + idNum+".jpg";
                                     storageRef.child(imageurl).getDownloadUrl()
@@ -134,6 +220,17 @@ public class CouponDetailActivity extends AppCompatActivity {
                     }
                 });
     }//onStrart
+
+    private int findAlarmIndex(String alarm) {
+        if (StringAndFunction.cp_alarm1.equals(alarm)) {
+            return 0;
+        } else if (StringAndFunction.cp_alarm2.equals(alarm)) {
+            return 1;
+        } else if (StringAndFunction.cp_alarm3.equals(alarm)) {
+            return 2;
+        }
+        return 0;
+    }
 
     private void showDialogAndDelete(){
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(CouponDetailActivity.this)
@@ -190,5 +287,11 @@ public class CouponDetailActivity extends AppCompatActivity {
                         Toast.makeText(CouponDetailActivity.this, "삭제실패! 잠시후 시도해주세요", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private void updateLabel(){
+        String myFormat = StringAndFunction.dateformat;
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+        cp_detail_date.setText(sdf.format(myCalendar.getTime()));
+
     }
 }
