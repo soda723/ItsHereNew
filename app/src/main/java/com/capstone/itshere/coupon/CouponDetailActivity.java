@@ -58,7 +58,6 @@ public class CouponDetailActivity extends AppCompatActivity {
 
         //intent
         idNum = getIntent().getStringExtra("idNum");
-        Log.e("in coupon detail", idNum);
 
         //툴바 설정
         back = (ImageButton) findViewById(R.id.tool_sub2_back);

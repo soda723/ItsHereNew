@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".membership.MBSDetailActivity">
+    <include
+        layout="@layout/toolbar_sub3"
+        android:id="@+id/toolbar_ab_add"
+        android:layout_height="60dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/scdream7"
+                android:text="바코드 번호"/>
+            <EditText
+                android:id="@+id/mbs_detail_barcode"
+                android:layout_width="250dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="내용"/>
+            <EditText
+                android:id="@+id/mbs_detail_contents"
+                android:layout_width="250dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/scdream7"
+                android:text="색상"/>
+            <LinearLayout
+                android:id="@+id/mbs_detail_colorpicker"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/myBlue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/mbs_detail_modi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/layout_roundsquare_gray"
+                android:text="수정"
+                android:textSize="20dp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/mbs_detail_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/layout_roundsquare_blue"
+                android:text="삭제"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

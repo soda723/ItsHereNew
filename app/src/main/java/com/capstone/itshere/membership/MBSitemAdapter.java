@@ -1,6 +1,7 @@
 package com.capstone.itshere.membership;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +35,6 @@ public class MBSitemAdapter extends RecyclerView.Adapter<MBSitemAdapter.MBSItemH
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public MBSItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +45,6 @@ public class MBSitemAdapter extends RecyclerView.Adapter<MBSitemAdapter.MBSItemH
             holder = new MBSItemHolder(view);
         } catch (WriterException e) {
             e.printStackTrace();
-            Log.e("홀더 널 : ", e+" ");
         }
         return holder;
     }
@@ -52,7 +52,7 @@ public class MBSitemAdapter extends RecyclerView.Adapter<MBSitemAdapter.MBSItemH
     @Override
     public void onBindViewHolder(@NonNull MBSitemAdapter.MBSItemHolder holder, int position) {
         myitem = arrayList.get(position);
-        holder.tv_mbs_contents.setText(myitem.getContents());
+        holder.tv_mbs_contents.setText(myitem.getContents()+" > ");
         holder.ly_color.setBackgroundColor(myitem.getColor());
         holder.barcode_text.setText(myitem.getBarcode());
 
@@ -80,23 +80,23 @@ public class MBSitemAdapter extends RecyclerView.Adapter<MBSitemAdapter.MBSItemH
         public MBSItemHolder(@NonNull View itemview) throws WriterException {
             super(itemview);
             this.tv_mbs_contents = itemview.findViewById(R.id.mbsitem_name);
-            this.btn_delete = itemview.findViewById(R.id.mbsitem_btn_delete);
-            this.btn_pencil = itemview.findViewById(R.id.mbsitem_btn_pencil);
             this.ly_color = itemview.findViewById(R.id.mbsitem_ly_color);
             this.barcode_text = itemview.findViewById(R.id.barcode_text);
             barcode_image = itemview.findViewById(R.id.barcode_image);
 
-            btn_delete.setOnClickListener(new View.OnClickListener() {
+            itemview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    
-                }
-            });
-
-            btn_pencil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
+                    int pos = getAbsoluteAdapterPosition();
+                    String id = arrayList.get(pos).getID();
+                    if(pos != RecyclerView.NO_POSITION){
+                        Intent intent = new Intent(context, MBSDetailActivity.class);
+                        intent.putExtra("id", id);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }else{
+                        Log.e("MBS어댑터", "잘못된 position");
+                    }
                 }
             });
         }

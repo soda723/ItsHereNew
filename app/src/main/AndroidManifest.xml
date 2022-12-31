@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItsHere">
         <activity
+            android:name=".membership.MBSDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".membership.MembershipAddActivity"
             android:exported="false" />
         <activity
