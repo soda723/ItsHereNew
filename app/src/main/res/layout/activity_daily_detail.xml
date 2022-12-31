@@ -34,14 +34,26 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/dd_inex"
+            <RadioGroup
+                android:id="@+id/dd_radio"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                tools:text="지출"
-                android:textSize="18dp" />
+                android:gravity="center"
+                android:checkedButton="@id/ab_add_radio_expense"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/dd_radio_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="수입"/>
+                <RadioButton
+                    android:id="@+id/dd_radio_expense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="지출"/>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -85,14 +97,10 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/dd_account"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                tools:text="현금"
-                android:textSize="18dp" />
+                android:layout_height="40dp" />
 
 
         </LinearLayout>
@@ -112,14 +120,10 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/dd_category"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                tools:text="경조사/회비"
-                android:textSize="18dp" />
+                android:layout_height="40dp" />
 
 
         </LinearLayout>

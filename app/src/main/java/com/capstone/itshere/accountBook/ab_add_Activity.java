@@ -48,8 +48,8 @@ public class ab_add_Activity extends AppCompatActivity {
 
     private RadioGroup radio;
     private RadioButton radioValue;
-    EditText ab_add_date, ab_add_amount, ab_add_note, ab_add_memo;
-    Spinner spinner_account, spinner_category;
+    private EditText ab_add_date, ab_add_amount, ab_add_note, ab_add_memo;
+    private Spinner spinner_account, spinner_category;
     private Button btn_save;
     private String MONTH;
 
