@@ -186,11 +186,14 @@
 
         <Button
             android:id="@+id/ab_add_save"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"
-            android:text="저장하기" />
+            android:layout_marginLeft="110dp"
+            android:background="@drawable/layout_roundsquare_red"
+            android:textColor="@color/white"
+            android:fontFamily="@font/scdream7"
+            android:text="저장" />
 
     </LinearLayout>
 

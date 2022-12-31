@@ -59,6 +59,10 @@
                 android:id="@+id/btn_stats"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/layout_roundsquare_gray"
+                android:fontFamily="@font/scdream5"
+                android:textColor="@color/white"
+                android:layout_marginRight="20dp"
                 android:text="지출 통계" />
 <!--            <Button-->
 <!--                android:layout_width="30dp"-->
@@ -92,7 +96,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="300000원(예시)"
+                    android:fontFamily="@font/scdream5"
+                    tools:text="300000"
                     android:textColor="@color/myBlue" />
             </LinearLayout>
 
@@ -124,7 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="200000원(예시)"
+                    tools:text="200000"
+                    android:fontFamily="@font/scdream5"
                     android:textColor="@color/myRed" />
             </LinearLayout>
 
@@ -156,7 +162,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="100000원(예시)" />
+                    tools:text="100000"
+                    android:fontFamily="@font/scdream5"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -197,6 +204,7 @@
         android:layout_marginBottom="70dp"
         android:backgroundTint="@color/myRed"
         android:src="@drawable/ic_add_white"
+        app:borderWidth="0dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

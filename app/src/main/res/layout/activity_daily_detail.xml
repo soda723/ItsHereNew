@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="#E0E0E0"
         android:orientation="vertical"
         android:paddingLeft="50dp">
 
@@ -35,13 +34,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_inex"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                tools:text="지출"
                 android:textSize="18dp" />
 
         </LinearLayout>
@@ -61,13 +60,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_date"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                tools:text="2022-05-18"
                 android:textSize="18dp" />
         </LinearLayout>
 
@@ -86,13 +85,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_account"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                tools:text="현금"
                 android:textSize="18dp" />
 
 
@@ -113,13 +112,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_category"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                tools:text="경조사/회비"
                 android:textSize="18dp" />
 
 
@@ -140,13 +139,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_amount"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                android:text="20000"
                 android:textSize="18dp" />
 
 
@@ -167,13 +166,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_note"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                android:text="회비"
                 android:textSize="18dp" />
 
 
@@ -194,13 +193,13 @@
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dd_memo"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:text="지출"
+                android:text="메모메모"
                 android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>
@@ -212,10 +211,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_roundsquare_red"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/scdream7"
+            android:textColor="@color/white"
+            android:text="수정" />
+
+        <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/myRed"
+            android:background="@drawable/layout_roundsquare_gray"
             android:fontFamily="@font/scdream7"
             android:textColor="@color/white"
             android:text="삭제" />
