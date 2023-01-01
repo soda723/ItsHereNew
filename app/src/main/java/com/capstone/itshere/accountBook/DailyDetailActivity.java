@@ -222,6 +222,8 @@ public class DailyDetailActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() != null){
             Map<String, Object > data = new HashMap<>();
 
+            MONTH = dd_date.getText().toString().substring(0,7);
+
             try{
                 data.put(FirebaseID.bigcate, radioValue.getText().toString());
             }catch(NullPointerException e){
