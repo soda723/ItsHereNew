@@ -85,7 +85,7 @@ public class cp_add_Activity extends AppCompatActivity {
     private AlarmManager alarmManager;
     private GregorianCalendar gCalander;
     private NotificationManager notificationManager;
-    NotificationCompat.Builder builder;
+    //NotificationCompat.Builder builder;
 
     private Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -215,7 +215,7 @@ public class cp_add_Activity extends AppCompatActivity {
 //                } catch(Exception e){
 //                    Toast.makeText(cp_add_Activity.this,"잠시후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
 //                }
-                ResisterAlarm();
+                //ResisterAlarm();
                 finish();
             }else{
                 //이미지 선택하지 않음
@@ -285,5 +285,7 @@ public class cp_add_Activity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
         Log.e("여기여기여기여기", "실행됐음!!!!");
     }
+
+
 
 }
