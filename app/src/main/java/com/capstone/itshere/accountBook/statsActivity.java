@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.capstone.itshere.R;
+import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -56,10 +57,12 @@ public class statsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        MONTH = getIntent().getStringExtra("month");
+
         //툴바 설정
         back = (ImageButton) findViewById(R.id.tool_sub1_back);
         title = (TextView) findViewById(R.id.tool_sub1_title);
-        title.setText(getYearMonth() + "지출 통계");
+        title.setText(MONTH+ " 지출 통계");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +86,6 @@ public class statsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         String document_email = User.getEmail();
-        MONTH = getYearMonth();
         //db에서 값 가져오기 > arraylist에 담기 > adpater에 저장 > 리사이클러 뷰에 뿌리기
 
         db.collection(FirebaseID.noteboard).document(document_email).collection(MONTH)
@@ -128,13 +130,13 @@ public class statsActivity extends AppCompatActivity {
                                 percentageV[i] = Math.round((1.0 * arrayValue[i] / v_total * 100*10)/10.0);
                                 //소수점 첫째자리까지 유효숫자를 표시하기 위해 10을 곱한후 다시 나눈다
                             }
-                            statsArrayList.add(new StatsItem(percentageV[0], CategoryId.food, arrayValue[0]));
-                            statsArrayList.add(new StatsItem(percentageV[1], CategoryId.traffic, arrayValue[1]));
-                            statsArrayList.add(new StatsItem(percentageV[2], CategoryId.culture, arrayValue[2]));
-                            statsArrayList.add(new StatsItem(percentageV[3], CategoryId.beauty, arrayValue[3]));
-                            statsArrayList.add(new StatsItem(percentageV[4], CategoryId.household, arrayValue[4]));
-                            statsArrayList.add(new StatsItem(percentageV[5], CategoryId.congratuations, arrayValue[5]));
-                            statsArrayList.add(new StatsItem(percentageV[6], CategoryId.etc, arrayValue[6]));
+                            statsArrayList.add(new StatsItem(percentageV[0], CategoryId.food, arrayValue[0], MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[1], CategoryId.traffic, arrayValue[1],MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[2], CategoryId.culture, arrayValue[2],MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[3], CategoryId.beauty, arrayValue[3],MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[4], CategoryId.household, arrayValue[4],MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[5], CategoryId.congratuations, arrayValue[5],MONTH));
+                            statsArrayList.add(new StatsItem(percentageV[6], CategoryId.etc, arrayValue[6],MONTH));
                             adapter = new statsItemAdapter(statsArrayList,getApplicationContext());
                             stats_view.setAdapter(adapter); //리사이클러뷰에 데이터 표시시
 
@@ -157,10 +159,6 @@ public class statsActivity extends AppCompatActivity {
 
 
     }//--OnStart--*
-
-    private String getYearMonth() {
-        return "2022-05";
-    }
 
     protected void makePiechart(){
         //Piechart

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.capstone.itshere.Fragment1;
 import com.capstone.itshere.R;
+import com.capstone.itshere.StringAndFunction;
 import com.capstone.itshere.account.FirebaseID;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,6 +54,7 @@ public class StatsDetailyActivity extends AppCompatActivity {
 
         //intent // 카테고리 이름 가져오기 ex)식비
         categoryname = getIntent().getStringExtra("category");
+        MONTH = getIntent().getStringExtra("MONTH");
 
         //Initialize
         recyclerView = findViewById(R.id.rview_statsdetaily);
@@ -85,7 +87,6 @@ public class StatsDetailyActivity extends AppCompatActivity {
     private void loadCategoryData() {
         try{
             document_email = User.getEmail();
-            MONTH= Fragment1.getYearMonth();
             //db에서 값 가져오기 > arraylist에 담기 > adpater에 저장 > 리사이클러 뷰에 뿌리기
             db.collection(FirebaseID.noteboard).document(document_email).collection(MONTH)
                     .orderBy(FirebaseID.notedate, Query.Direction.DESCENDING)

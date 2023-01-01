@@ -3,10 +3,14 @@ package com.capstone.itshere;
 import static com.capstone.itshere.StringAndFunction.timestampToString;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +40,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class Fragment1 extends Fragment {
@@ -52,13 +58,14 @@ public class Fragment1 extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     final FirebaseUser User = mAuth.getCurrentUser();
     private static String document_email;
-    private TextView tv_hint, tv_hint2;
+    private TextView tv_hint, tv_hint2, tv_year, tv_month;
     private LinearLayout ly_total;
     private Button btn_stats;
     private int income , outcome, total;
     private TextView tv_income, tv_outcome, tv_total;
     private Button left, right;
     private String MONTH;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +89,8 @@ public class Fragment1 extends Fragment {
         tv_total = view.findViewById(R.id.tv_total);
         left = view.findViewById(R.id.btn_month_left);
         right = view.findViewById(R.id.btn_month_right);
+        tv_year = view.findViewById(R.id.tv_year);
+        tv_month = view.findViewById(R.id.tv_month);
 
         //등록버튼 설정
         fab = (FloatingActionButton) view.findViewById(R.id.fab_add);
@@ -98,18 +107,56 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent2 = new Intent(getContext(), statsActivity.class);
+                intent2.putExtra("month", MONTH);
                 startActivity(intent2);
             }
         });
 
+        //월 이동
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<String> monthyear = Arrays.asList(MONTH.split("-"));
+                Integer thisYear = Integer.parseInt(monthyear.get(0));
+                Integer thisMonth = Integer.parseInt(monthyear.get(1));
+                if( thisMonth > 1) thisMonth--;
+                else {
+                    thisYear--;
+                    thisMonth = 12;
+                }
+                if (thisMonth <10) MONTH = thisYear + "-0" + thisMonth;
+                else MONTH = thisYear + "-" + thisMonth;
+                loadData(MONTH);
+            }
+        });
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<String> monthyear = Arrays.asList(MONTH.split("-"));
+                Integer thisYear = Integer.parseInt(monthyear.get(0));
+                Integer thisMonth = Integer.parseInt(monthyear.get(1));
+                if( thisMonth < 12) thisMonth++;
+                else {
+                    thisYear++;
+                    thisMonth = 1;
+                }
+                if (thisMonth <10) MONTH = thisYear + "-0" + thisMonth;
+                else MONTH = thisYear + "-" + thisMonth;
+                loadData(MONTH);
+            }
+        });
 
-        return view;
+
+       return view;
     }//OnCreateView
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onStart(){
         super.onStart();
-        loadData();
+        MONTH = "";
+        MONTH = StringAndFunction.getTodayYearMonth(); //오늘기준 년도-월값 지정 ('2022-05')
+        loadData(MONTH);
 
     }//onStart--*
 
@@ -119,13 +166,14 @@ public class Fragment1 extends Fragment {
         //
     }
 
-    protected void loadData(){
-        MONTH = "";
-        MONTH = getYearMonth(); //오늘기준 년도-월값 지정 ('2022-05')
+    protected void loadData(String month){
+        List<String> monthyear = Arrays.asList(month.split("-"));
+        tv_year.setText(monthyear.get(0)+"년");
+        tv_month.setText(monthyear.get(1)+"월");
         try{
             document_email = User.getEmail(); //해당 사용자 email 값 불러오기
             //db에서 값 가져오기 > arraylist에 담기 > adpater에 저장 > 리사이클러 뷰에 뿌리기
-            db.collection(FirebaseID.noteboard).document(document_email).collection(MONTH)
+            db.collection(FirebaseID.noteboard).document(document_email).collection(month)
                     .orderBy(FirebaseID.notedate, Query.Direction.DESCENDING)
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
@@ -179,7 +227,5 @@ public class Fragment1 extends Fragment {
         }
     }
 
-    public static String getYearMonth(){
-        return "2022-05";
-    };
+
 }

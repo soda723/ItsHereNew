@@ -1,9 +1,14 @@
 package com.capstone.itshere;
 
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -59,5 +64,12 @@ public class StringAndFunction {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getTodayYearMonth(){
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String nowdate = now.format(formatter);
 
+        return nowdate;
+    };
 }

@@ -62,6 +62,7 @@ public class statsItemAdapter extends RecyclerView.Adapter<statsItemAdapter.stat
                     if (pos != RecyclerView.NO_POSITION){
                         Intent intent = new Intent(mcontext, StatsDetailyActivity.class);
                         intent.putExtra("category", category);
+                        intent.putExtra("MONTH", arrayList.get(pos).getMONTH());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mcontext.startActivity(intent);
                     }else{
