@@ -12,7 +12,7 @@
         android:id="@+id/fragment_2"
         android:enabled="true"
         android:icon="@drawable/selector_menu_barcord_icon"
-        android:title="쿠폰관리"/>
+        android:title="쿠폰"/>
 
     <item
         android:id="@+id/fragment_3"

@@ -17,9 +17,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:text="가계부 관리"
+                android:gravity="center"
+                android:textColor="@color/myRed"
+                android:textSize="20dp"
+                android:fontFamily="@font/scdream7"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:gravity="center_vertical"
@@ -51,7 +60,7 @@
                 <Button
                     android:id="@+id/btn_month_right"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/ic_right_red_24"/>
             </LinearLayout>
 

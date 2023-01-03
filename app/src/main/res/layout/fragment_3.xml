@@ -9,6 +9,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="멤버십 관리"
+            android:textColor="@color/myBlue"
+            android:textSize="20dp"
+            android:fontFamily="@font/scdream7"/>
+        <TextView
             android:id="@+id/fr3_tv_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
