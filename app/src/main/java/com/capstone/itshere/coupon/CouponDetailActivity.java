@@ -97,7 +97,7 @@ public class CouponDetailActivity extends AppCompatActivity {
         imageView = findViewById(R.id.cp_detail_imageview);
         cp_detail_contents = findViewById(R.id.cp_detail_contents);
         cp_detail_date = findViewById(R.id.cp_detail_date);
-        spinner = findViewById(R.id.cp_detail_spinner);
+        //spinner = findViewById(R.id.cp_detail_spinner);
         btn_delete = findViewById(R.id.cp_detail_btn_delete);
         btn_modify = findViewById(R.id.cp_detail_btn_modify);
 
@@ -114,10 +114,10 @@ public class CouponDetailActivity extends AppCompatActivity {
         });
 
         //alarm spinner
-        String[] alarm_items = { StringAndFunction.cp_alarm1, StringAndFunction.cp_alarm2, StringAndFunction.cp_alarm3};
+        /*String[] alarm_items = { StringAndFunction.cp_alarm1, StringAndFunction.cp_alarm2, StringAndFunction.cp_alarm3};
         ArrayAdapter<String> alarm_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, alarm_items);
         alarm_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(alarm_adapter);
+        spinner.setAdapter(alarm_adapter);*/
 
         //삭제버튼
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +161,7 @@ public class CouponDetailActivity extends AppCompatActivity {
 
             data.put(FirebaseID.notedate, StringAndFunction.StringToTimeStamp(cp_detail_date.getText().toString()));
             data.put(FirebaseID.contents, cp_detail_contents.getText().toString());
-            data.put(FirebaseID.alarm, spinner.getSelectedItem().toString());
+            //data.put(FirebaseID.alarm, spinner.getSelectedItem().toString());
 
             db.collection(FirebaseID.couponboard).document(document_email)
                     .collection(FirebaseID.conn).document(idNum)
@@ -188,12 +188,12 @@ public class CouponDetailActivity extends AppCompatActivity {
                                 Map<String, Object> shot = doc.getData();
                                 String contents = (String) shot.get(FirebaseID.contents);
                                 String date = timestampToString(String.valueOf(shot.get(FirebaseID.notedate)));
-                                String alarm = (String) shot.get(FirebaseID.alarm);
+                                //String alarm = (String) shot.get(FirebaseID.alarm);
                                 String url = (String) shot.get(FirebaseID.imageurl);
 
                                 cp_detail_contents.setText(contents);
                                 cp_detail_date.setText(date);
-                                spinner.setSelection(findAlarmIndex(alarm));
+                                //spinner.setSelection(findAlarmIndex(alarm));
                                 try{
                                     imageurl = "coupon/"+document_email + idNum+".jpg";
                                     storageRef.child(imageurl).getDownloadUrl()

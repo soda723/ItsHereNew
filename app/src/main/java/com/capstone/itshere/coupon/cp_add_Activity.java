@@ -136,7 +136,7 @@ public class cp_add_Activity extends AppCompatActivity {
         addimage = findViewById(R.id.cpImagevView);
         cp_add_contents = findViewById(R.id.cp_add_contents);
         cp_add_date = findViewById(R.id.cp_add_date);
-        alarm_spinner = findViewById(R.id.cp_add_alarm);
+        //alarm_spinner = findViewById(R.id.cp_add_alarm);
 
         //datepicker설정
         cp_add_date.setOnClickListener(new View.OnClickListener() {
@@ -152,10 +152,11 @@ public class cp_add_Activity extends AppCompatActivity {
         });
 
         //alarm spinner
+        /*
         String[] alarm_items = { StringAndFunction.cp_alarm1, StringAndFunction.cp_alarm2, StringAndFunction.cp_alarm3};
         ArrayAdapter<String> alarm_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, alarm_items);
         alarm_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        alarm_spinner.setAdapter(alarm_adapter);
+        alarm_spinner.setAdapter(alarm_adapter);*/
 
 
 
@@ -204,7 +205,7 @@ public class cp_add_Activity extends AppCompatActivity {
                     data.put(FirebaseID.documentId, cpNoteId);
                     data.put(FirebaseID.contents, cp_add_contents.getText().toString());
                     data.put(FirebaseID.notedate, StringAndFunction.StringToTimeStamp(cp_add_date.getText().toString()));
-                    data.put(FirebaseID.alarm, alarm_spinner.getSelectedItem().toString());
+                    //data.put(FirebaseID.alarm, alarm_spinner.getSelectedItem().toString());
                     data.put(FirebaseID.imageurl, modelID);
                     Log.e("이미지URl : ", modelID);
 
