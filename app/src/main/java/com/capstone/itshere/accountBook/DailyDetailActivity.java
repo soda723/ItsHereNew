@@ -164,7 +164,7 @@ public class DailyDetailActivity extends AppCompatActivity {
                 alertDialogBuilder.setTitle("가계부 내역 삭제"); //팝업창 제목
                 alertDialogBuilder
                         .setMessage("가계부 내역을 삭제하시겠습니까?")//팝업창 메시지
-                        .setCancelable(false) //취소버튼 - 취소
+                        .setCancelable(true) //뒤로가기(?)로 취소 가능하게
                         .setPositiveButton("삭제", //긍정버튼 이름은 삭제, 기능은 아래와 같이 실행
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
@@ -206,13 +206,19 @@ public class DailyDetailActivity extends AppCompatActivity {
         AlertDialog.Builder builder2 = new AlertDialog.Builder(DailyDetailActivity.this);
         builder2.setTitle("가계부 내역 수정") //팝업창 제목
                 .setMessage("가계부 내역을 수정하시겠습니까?")//팝업창 메시지
-                .setCancelable(false) //취소버튼 - 취소
+                .setCancelable(true) //취소버튼 - 취소
                 .setPositiveButton("수정", //긍정버튼 이름은 삭제, 기능은 아래와 같이 실행
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 modifyNote();
                             }
-                        });
+                        })
+                .setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });;
 
         AlertDialog alertDialog2 = builder2.create();
         alertDialog2.show();
