@@ -1,10 +1,11 @@
 # ItsHere
 2022 spring 컴퓨터공학종합프로젝트2(캡스톤디자인)
 
-[2022-06-12]
-- 회원가입/로그인 및 가계부(account book)에 대한 프로젝트 코드이다.
-- 바코드인식, 쿠폰 및 멤버십 관리 기능에 대한 코드는 본 프로젝트로 아직 합쳐지지않았다.
+~ 20223 졸업논문
 
+- 이전 작업은 [ItsHere](https://github.com/soda723/ItsHere)에서 확인할 수 있다.
+
+-------
 ### 주의
-##### Firebase
+#### [ Firebase 연동 ] 
 - app/google-services.json 파일이 github에 없으므로 처음 다운받을때 추가 해야한다.
