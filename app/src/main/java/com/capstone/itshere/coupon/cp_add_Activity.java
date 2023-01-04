@@ -190,7 +190,7 @@ public class cp_add_Activity extends AppCompatActivity {
                         addimage.setImageURI(imageUrl);
                 }
             }
-}
+        }
     );
 
     private void saveCouponData() {
@@ -231,20 +231,20 @@ public class cp_add_Activity extends AppCompatActivity {
     private void uploadTofirebase(Uri uri){
         modelID = email+cpNoteId+".jpg"; // 파일명
         Uri file  = uri;
-        Log.d("확인유알", String.valueOf(file));
+        //Log.d("확인유알", String.valueOf(file));
         StorageReference riversRef = storageRef.child("coupon/" + modelID);
         UploadTask uploadTask = riversRef.putFile(file);
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.e("노2 업로드2", "bad");
+                //Log.e("노2 업로드2", "bad");
                 //Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.e("굿2 업로드2", "good");
+                //Log.e("굿2 업로드2", "good");
             }
         });
         addimage.setImageResource(R.drawable.ic_add_image);
@@ -284,7 +284,6 @@ public class cp_add_Activity extends AppCompatActivity {
         calendar.setTime(datetime);
 
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
-        Log.e("여기여기여기여기", "실행됐음!!!!");
     }
 
 

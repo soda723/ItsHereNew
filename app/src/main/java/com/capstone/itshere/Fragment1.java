@@ -167,8 +167,8 @@ public class Fragment1 extends Fragment {
     }
 
     protected void loadData(String month){
-        List<String> monthyear = Arrays.asList(month.split("-"));
-        tv_year.setText(monthyear.get(0)+"년");
+        List<String> monthyear = Arrays.asList(month.split("-")); // "2023-01"형태를 년과 월로 분리
+        tv_year.setText(monthyear.get(0)+"년"); // 화면에 년도와 월 표시
         tv_month.setText(monthyear.get(1)+"월");
         try{
             document_email = User.getEmail(); //해당 사용자 email 값 불러오기

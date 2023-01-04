@@ -151,7 +151,7 @@ public class ab_add_Activity extends AppCompatActivity {
                     });
         }
 
-        //add버튼 클릭
+        //등록버튼 클릭
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
